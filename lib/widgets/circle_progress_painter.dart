@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class CircularProgressPainter extends CustomPainter {
-  final Animation<double> animation;
+  final double progress;
   final Color glowColor;
   final Color progressColor;
   final ImageFilter? blur;
@@ -12,13 +12,13 @@ class CircularProgressPainter extends CustomPainter {
   final double? strokeShadowWidth;
 
   CircularProgressPainter({
-    required this.animation,
+    required this.progress,
     required this.glowColor,
     required this.progressColor,
     this.strokeWidth = 5,
     this.strokeShadowWidth,
     this.blur,
-  }) : super(repaint: animation);
+  }) : super();
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -44,7 +44,7 @@ class CircularProgressPainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = min(size.width / 2, size.height / 2) - 5;
 
-    final progress = (animation.value) * 2 * pi;
+    final progress = (this.progress) * 2 * pi;
 
     // Draw the neon glow
     canvas.drawArc(
@@ -66,7 +66,7 @@ class CircularProgressPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
   }
 }
