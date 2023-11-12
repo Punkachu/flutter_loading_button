@@ -22,10 +22,6 @@ class LoadingText extends StatelessWidget {
       emboss: true,
       size: textSize,
       textColor: textColor ?? Color(0xFFffcc00).withOpacity(0.5),
-      //parentColor: Colors.grey[300],
-      //color: const Color(0xFFffcc00).withOpacity(0.1),
-      //depth: 4,
-      //spread: 3,
     );
   }
 }

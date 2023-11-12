@@ -55,10 +55,6 @@ class DownloadButton extends StatelessWidget {
                       textColor: const Color(0xff797676)
                           .withAlpha(50)
                           .withOpacity(0.5),
-                      //parentColor: Colors.grey[300],
-                      //color: const Color(0xFFffcc00).withOpacity(0.1),
-                      //depth: 4,
-                      //spread: 3,
                     ),
                   ),
                 ),
@@ -125,23 +121,10 @@ class DownloadButton extends StatelessWidget {
 
                 /// ICON
                 Center(
-                  child: GestureDetector(
-                    // onTapDown: (TapDownDetails details) {
-                    //   setState(() {
-                    //     isPushed = false;
-                    //   });
-                    // },
-                    // onTapUp: (TapUpDetails details) {
-                    //   setState(() {
-                    //     isPushed = true;
-                    //   });
-                    //   onTapPushButton();
-                    // },
-                    child: SvgPicture.asset(
-                      svgPath,
-                      color: cloudColor,
-                      fit: BoxFit.scaleDown,
-                    ),
+                  child: SvgPicture.asset(
+                    svgPath,
+                    color: cloudColor,
+                    fit: BoxFit.scaleDown,
                   ),
                 ),
 

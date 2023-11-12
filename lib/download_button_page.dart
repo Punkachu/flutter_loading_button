@@ -40,26 +40,23 @@ class _DownloadButtonPageState extends State<DownloadButtonPage> {
     return StreamBuilder<double>(
       stream: _progressStream,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return DownloadButton(
-            filename: "Star_Wars_Rogue_One.rar",
-            progress: snapshot.data!,
-            firstIconColor: Colors.black45,
-            secondIconColor: const Color(0xFFffd11a).withOpacity(0.9),
-            baseColor: const Color(0xFFf2f2f2),
-          );
-        } else if (snapshot.hasError) {
+        late final double progress;
+        if (snapshot.hasError) {
+          progress = 0;
           return Text('Error: ${snapshot.error}');
-        } else {
-          return DownloadButton(
-            filename: "Star_Wars_Rogue_One.rar",
-            progress: 0,
-            firstIconColor: Colors.black45,
-            secondIconColor:
-                const Color(0xFFffd11a).withAlpha(255).withOpacity(0.9),
-            baseColor: const Color(0xFFf2f2f2),
-          );
         }
+        if (snapshot.hasData) {
+          progress = snapshot.data!;
+        } else {
+          progress = 0;
+        }
+        return DownloadButton(
+          filename: "Star_Wars_Rogue_One.rar",
+          progress: progress,
+          firstIconColor: Colors.black45,
+          secondIconColor: const Color(0xFFffd11a).withOpacity(0.9),
+          baseColor: const Color(0xFFf2f2f2),
+        );
       },
     );
   }
