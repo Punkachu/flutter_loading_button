@@ -4,11 +4,11 @@ import 'package:clay_containers/clay_containers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'circle_progress_painter.dart';
+import '../painter/circle_progress_painter.dart';
 import 'loading_text.dart';
 
 class DownloadButton extends StatelessWidget {
-  final int progress;
+  final double progress;
 
   final Color baseColor;
   final Color firstIconColor;
@@ -16,8 +16,11 @@ class DownloadButton extends StatelessWidget {
 
   final String svgPath;
 
+  final String filename;
+
   const DownloadButton(
       {required this.progress,
+      required this.filename,
       required this.firstIconColor,
       required this.secondIconColor,
       this.svgPath = 'assets/svg_files/download.svg',
@@ -40,6 +43,26 @@ class DownloadButton extends StatelessWidget {
             color: baseColor,
             child: Stack(
               children: [
+                /// TITLE
+                Align(
+                  alignment: const Alignment(0.0, -0.6),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ClayText(
+                      "DOWNLOADING: $filename",
+                      emboss: true,
+                      size: 27,
+                      textColor: const Color(0xff797676)
+                          .withAlpha(50)
+                          .withOpacity(0.5),
+                      //parentColor: Colors.grey[300],
+                      //color: const Color(0xFFffcc00).withOpacity(0.1),
+                      //depth: 4,
+                      //spread: 3,
+                    ),
+                  ),
+                ),
+
                 /// EXTERNAL CIRCLE
                 Center(
                   child: ClayContainer(
@@ -78,8 +101,8 @@ class DownloadButton extends StatelessWidget {
                       glowColor: const Color(0xFFffff00).withAlpha(70),
                       progressColor: const Color(0xFFffcc00).withAlpha(50),
                       blur: ImageFilter.blur(
-                        sigmaY: 6,
-                        sigmaX: 6,
+                        sigmaY: 16,
+                        sigmaX: 16,
                       ),
                     ),
                   ),

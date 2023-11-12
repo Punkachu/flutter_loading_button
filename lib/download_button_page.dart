@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:fancy_loading_button/widgets/download_button.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,14 @@ class DownloadButtonPage extends StatefulWidget {
 }
 
 class _DownloadButtonPageState extends State<DownloadButtonPage> {
-  late StreamController<int> _progressStreamController;
-  late Stream<int> _progressStream;
+  late StreamController<double> _progressStreamController;
+  late Stream<double> _progressStream;
 
   @override
   void initState() {
     super.initState();
 
-    _progressStreamController = StreamController<int>();
+    _progressStreamController = StreamController<double>();
     _progressStream = _progressStreamController.stream;
 
     // Simulate progress updates
@@ -26,19 +27,22 @@ class _DownloadButtonPageState extends State<DownloadButtonPage> {
   // Simulates progress updates and adds values to the stream
   void simulateProgress() async {
     for (int i = 0; i <= 100; i += 10) {
-      await Future.delayed(Duration(milliseconds: i * 50));
-      _progressStreamController.add(i);
+      Random random = Random();
+      final int milisec = random.nextInt(1500) + 200;
+      await Future.delayed(Duration(milliseconds: milisec));
+      _progressStreamController.add(i + (i * 0.3));
     }
     _progressStreamController.close();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<int>(
+    return StreamBuilder<double>(
       stream: _progressStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return DownloadButton(
+            filename: "Star_Wars_Rogue_One.rar",
             progress: snapshot.data!,
             firstIconColor: Colors.black45,
             secondIconColor: const Color(0xFFffd11a).withOpacity(0.9),
@@ -47,7 +51,14 @@ class _DownloadButtonPageState extends State<DownloadButtonPage> {
         } else if (snapshot.hasError) {
           return Text('Error: ${snapshot.error}');
         } else {
-          return Text('Waiting for progress...');
+          return DownloadButton(
+            filename: "Star_Wars_Rogue_One.rar",
+            progress: 0,
+            firstIconColor: Colors.black45,
+            secondIconColor:
+                const Color(0xFFffd11a).withAlpha(255).withOpacity(0.9),
+            baseColor: const Color(0xFFf2f2f2),
+          );
         }
       },
     );
