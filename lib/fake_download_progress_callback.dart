@@ -45,12 +45,13 @@ class _ExternalProgressWidgetState extends State<ExternalProgressWidget> {
 
   // Simulates progress updates and adds values to the stream
   void simulateProgress() async {
-    for (int i = 0; i <= 100; i += 10) {
-      Random random = Random();
+    Random random = Random();
+    for (int i = 0; i <= 100; i += random.nextInt(12) + 2) {
       final int milliseconds = random.nextInt(1500) + 200;
       await Future.delayed(Duration(milliseconds: milliseconds));
       _progressStreamController.add(i);
     }
+    _progressStreamController.add(100);
     _progressStreamController.close();
   }
 
@@ -61,11 +62,17 @@ class _ExternalProgressWidgetState extends State<ExternalProgressWidget> {
         stream: _progressStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Text("${snapshot.data!} %");
+            return Text(
+              "${snapshot.data!} %",
+              style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 30),
+            );
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
-            return const Text('Waiting for progress...');
+            return const Text(
+              'Waiting for progress...',
+              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 30),
+            );
           }
         },
       ),
