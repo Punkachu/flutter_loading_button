@@ -1,6 +1,8 @@
 # Fancy Loading Button
 Loading Animated Widget using Neumorphism.
 
+![Download Button](screenshots/Screenshot.png "Download Button")
+
 ![Download Animation](screenshots/download.gif "Download Animation Example")
 
 # Example With Stream:
