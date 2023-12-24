@@ -5,6 +5,10 @@ import 'package:fancy_loading_button/widgets/download_button.dart';
 import 'package:flutter/material.dart';
 
 class DownloadButtonPage extends StatefulWidget {
+  final String filename;
+
+  const DownloadButtonPage({required this.filename, super.key});
+
   @override
   _DownloadButtonPageState createState() => _DownloadButtonPageState();
 }
@@ -51,7 +55,7 @@ class _DownloadButtonPageState extends State<DownloadButtonPage> {
           progress = 0;
         }
         return DownloadButton(
-          filename: "Star_Wars_Rogue_One.rar",
+          filename: widget.filename,
           progress: progress,
           firstIconColor: Colors.black45,
           secondIconColor: const Color(0xFFffd11a).withOpacity(0.9),

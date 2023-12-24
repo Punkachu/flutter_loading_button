@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black45),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        backgroundColor: const Color(0xFFf2f2f2),
-        body: DownloadButtonPage(),
+      home: const Scaffold(
+        backgroundColor: Color(0xFFf2f2f2),
+        body: DownloadButtonPage(filename: "Star_Wars_Rogue_One.rar"),
       ),
     );
   }
