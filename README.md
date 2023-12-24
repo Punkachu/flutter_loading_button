@@ -1,9 +1,9 @@
-# fancy Loading Button
+# Fancy Loading Button
 Loading Animated Widget using Neumorphism.
 
 ![Download Animation](screenshots/download.gif "Download Animation Example")
 
-# Example with Stream:
+# Example With Stream:
 ```@dart
 import 'dart:async';
 import 'dart:math';
