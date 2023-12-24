@@ -1,7 +1,7 @@
 # Fancy Loading Button
 Loading Animated Widget using Neumorphism.
 
-![Download Animation](screenshots/download_animation.gif "Download Animation Example")
+![Download Animation](screenshots/download.gif "Download Animation Example")
 
 # Example With Stream:
 ```@dart
